@@ -1,6 +1,11 @@
 // 文章列表配置
 const articles = [
     {
+        title: "科技股/中概股分散配置建议",
+        file: "articles/科技股中概股配置建议.html",
+        date: "2026-03-14"
+    },
+    {
         title: "OpenClaw 深度分析报告",
         file: "articles/OpenClaw_Analysis_Report.html",
         date: "2026-03-14"
