@@ -1,6 +1,11 @@
 // 文章列表配置
 const articles = [
     {
+        title: "OpenClaw 投资机会分析 - 未来3个月港股美股布局指南",
+        file: "articles/OpenClaw_Investment_Opportunities.html",
+        date: "2026-03-14"
+    },
+    {
         title: "OpenClaw 深度分析报告",
         file: "articles/OpenClaw_Analysis_Report.html",
         date: "2026-03-14"
