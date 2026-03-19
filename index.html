@@ -23,7 +23,6 @@
     <main>
         <section class="articles">
             <h2>文章列表</h2>
-            <div id="stats-loading" class="stats-loading">📊 正在加载访问数据...</div>
             <ul id="article-list">
                 <!-- 文章列表将通过 JavaScript 动态加载 -->
             </ul>
@@ -32,12 +31,14 @@
     
     <footer>
         <div class="site-stats">
-            <span id="total-views">👁 总访问量: 加载中...</span>
-            <span id="total-users">👤 访客数: 加载中...</span>
+            <span>👁 总访问量: <span id="busuanzi_value_site_pv">--</span></span>
+            <span>👤 访客数: <span id="busuanzi_value_site_uv">--</span></span>
         </div>
         <p>&copy; 2026 Zeke. All rights reserved.</p>
     </footer>
     
+    <!-- 不蒜子访问统计 -->
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

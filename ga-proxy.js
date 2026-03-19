@@ -16,7 +16,7 @@ function doGet(e) {
   
   try {
     // 你的 GA4 Property ID
-    const propertyId = 'YOUR_GA4_PROPERTY_ID'; // 替换为你的 GA4 Property ID (格式: 123456789)
+    const propertyId = '529178550'; // GA4 Property ID
     
     // 获取今天的日期
     const today = new Date();
