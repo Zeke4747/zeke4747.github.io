@@ -1,6 +1,11 @@
 // 文章列表配置
 const articles = [
     {
+        title: "宏观政策与股市 - 投资者常识手册",
+        file: "articles/Macro_Policy_Stock_Market_CheatSheet.html",
+        date: "2026-03-19"
+    },
+    {
         title: "阿里巴巴财报深度分析 2026",
         file: "articles/Alibaba_Earnings_Analysis_20260319.html",
         date: "2026-03-19"

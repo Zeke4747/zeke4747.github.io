@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宏观政策与股市 - 投资者常识手册</title>
+    <style>
+        :root {
+            --primary: #1a237e;
+            --accent: #ff6f00;
+            --green: #2e7d32;
+            --red: #c62828;
+            --bg: #0d1b2a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8; color: #333;
+            background: linear-gradient(135deg, var(--bg) 0%, #1b2838 50%, #2a3f54 100%);
+            min-height: 100vh;
+        }
+        .container { max-width: 1300px; margin: 0 auto; padding: 40px 20px; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, #283593 100%);
+            border-radius: 20px; padding: 55px 40px; text-align: center;
+            margin-bottom: 30px; box-shadow: 0 20px 60px rgba(0,0,0,.4); color: #fff;
+        }
+        .header h1 { font-size: 2.6em; margin-bottom: 12px; }
+        .header .sub { font-size: 1.15em; opacity: .9; margin-bottom: 28px; }
+        .header .badges { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+        .badge {
+            background: rgba(255,255,255,.18); border-radius: 30px;
+            padding: 8px 22px; font-size: .92em; backdrop-filter: blur(6px);
+        }
+
+        /* Sections */
+        .section {
+            background: rgba(255,255,255,.97); border-radius: 20px;
+            padding: 38px; margin-bottom: 26px;
+            box-shadow: 0 10px 40px rgba(0,0,0,.2);
+        }
+        .section h2 {
+            font-size: 1.55em; color: var(--primary); margin-bottom: 24px;
+            padding-bottom: 14px; border-bottom: 3px solid var(--accent);
+            display: flex; align-items: center; gap: 12px;
+        }
+        .section h3 { font-size: 1.25em; color: #333; margin: 28px 0 14px; }
+        .section h4 { font-size: 1.1em; color: #555; margin: 18px 0 10px; }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: .93em; }
+        th, td { padding: 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background: linear-gradient(135deg, var(--primary), #283593); color: #fff; font-weight: 600; }
+        tr:hover { background: #f5f5f5; }
+
+        /* Cards */
+        .card-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 22px; margin: 24px 0;
+        }
+        .card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 15px; padding: 26px;
+            box-shadow: 0 4px 18px rgba(0,0,0,.07); border-top: 5px solid;
+            transition: transform .25s;
+        }
+        .card:hover { transform: translateY(-4px); }
+        .card.up { border-top-color: var(--green); }
+        .card.down { border-top-color: var(--red); }
+        .card.mixed { border-top-color: var(--accent); }
+        .card.info { border-top-color: var(--primary); }
+        .card h4 { font-size: 1.15em; margin-bottom: 14px; color: #222; }
+        .card ul { list-style: none; padding: 0; }
+        .card li { padding: 7px 0 7px 20px; position: relative; color: #555; }
+        .card li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+
+        /* Highlight */
+        .hl {
+            border-left: 5px solid var(--accent); padding: 22px 26px;
+            border-radius: 0 14px 14px 0; margin: 20px 0;
+            background: linear-gradient(135deg, rgba(255,111,0,.08), rgba(255,111,0,.03));
+        }
+        .hl.green { border-left-color: var(--green); background: linear-gradient(135deg, rgba(46,125,50,.08), rgba(46,125,50,.03)); }
+        .hl.red { border-left-color: var(--red); background: linear-gradient(135deg, rgba(198,40,40,.08), rgba(198,40,40,.03)); }
+
+        /* Impact Bar */
+        .impact { display: flex; align-items: center; gap: 10px; margin: 6px 0; }
+        .bar-bg { flex: 1; height: 10px; background: #e0e0e0; border-radius: 5px; overflow: hidden; max-width: 180px; }
+        .bar-fill { height: 100%; border-radius: 5px; }
+        .bar-fill.high { background: var(--red); width: 90%; }
+        .bar-fill.medium { background: var(--accent); width: 60%; }
+        .bar-fill.low { background: var(--green); width: 35%; }
+
+        /* Quick Reference */
+        .qr-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px; margin: 20px 0;
+        }
+        .qr-item {
+            background: #f8f9fa; border-radius: 12px; padding: 18px;
+            border-left: 4px solid var(--primary);
+        }
+        .qr-item .emoji { font-size: 1.4em; margin-bottom: 8px; }
+        .qr-item .name { font-weight: bold; color: #333; margin-bottom: 6px; }
+        .qr-item .desc { font-size: .9em; color: #666; }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px; color: rgba(255,255,255,.7); font-size: .88em; }
+        .disclaimer {
+            background: rgba(255,193,7,.14); border: 1px solid #ffc107;
+            border-radius: 10px; padding: 20px; margin-top: 28px; color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<!-- ==================== HEADER ==================== -->
+<div class="header">
+    <h1>宏观政策与股市影响速查手册</h1>
+    <p class="sub">Macro Events Cheat Sheet for Investors</p>
+    <div class="badges">
+        <span class="badge">美联储政策</span>
+        <span class="badge">经济数据</span>
+        <span class="badge">地缘政治</span>
+        <span class="badge">市场情绪指标</span>
+        <span class="badge">日历事件</span>
+        <span class="badge">跨市场联动</span>
+    </div>
+</div>
+
+<!-- ==================== 1. FED POLICY ==================== -->
+<div class="section">
+    <h2>1. 美联储货币政策</h2>
+    <p>美联储（Federal Reserve）是全球金融市场的"总阀门"。其政策工具主要包括：联邦基金利率调整（加息/降息）、资产负债表操作（QE/QT）、以及前瞻性指引。这三把"钥匙"几乎可以解释全球大类资产80%以上的中期趋势。</p>
+
+    <!-- 1.1 加息 -->
+    <h3>1.1 加息（Rate Hike）</h3>
+    <div class="hl red">
+        <p><strong>本质：</strong>提高联邦基金利率 → 资金成本上升 → 流动性收紧 → 风险资产承压</p>
+    </div>
+    <table>
+        <tr><th>受影响资产</th><th>典型反应</th><th>逻辑解释</th></tr>
+        <tr><td>美股（尤其成长股）</td><td style="color:#c62828;">下跌</td><td>贴现率上升 → 未来现金流折现值下降 → 高估值成长股首当其冲</td></tr>
+        <tr><td>美债（价格）</td><td style="color:#c62828;">下跌</td><td>利率上升 → 债券价格与利率反向 → 已有债券贬值</td></tr>
+        <tr><td>美元指数（DXY）</td><td style="color:#2e7d32;">上涨</td><td>利差扩大 → 国际资金回流美元 → 美元走强</td></tr>
+        <tr><td>黄金</td><td style="color:#c62828;">承压</td><td>持有黄金的机会成本上升（黄金不产生利息）</td></tr>
+        <tr><td>新兴市场股市</td><td style="color:#c62828;">下跌</td><td>资金外流 + 本币贬值 + 外债偿还压力加大</td></tr>
+        <tr><td>港股/中概股</td><td style="color:#c62828;">承压</td><td>资金流出港股 + 人民币贬值压力 + 风险偏好下降</td></tr>
+    </table>
+    <div class="hl">
+        <p><strong>关键规律：</strong>加息初期（前1-2次）市场通常跌幅较大，因为恐慌情绪主导；加息中后期市场逐渐适应，若经济数据强劲反而可能上涨（说明经济扛得住）。2022年美联储激进加息425bp，标普500全年跌19.4%，纳指跌33%。</p>
+    </div>
+
+    <!-- 1.2 降息 -->
+    <h3>1.2 降息（Rate Cut）</h3>
+    <div class="hl green">
+        <p><strong>本质：</strong>降低联邦基金利率 → 资金成本下降 → 流动性宽松 → 风险资产受益</p>
+    </div>
+    <table>
+        <tr><th>受影响资产</th><th>典型反应</th><th>逻辑解释</th></tr>
+        <tr><td>美股</td><td style="color:#2e7d32;">上涨（但需区分原因）</td><td>"预防式降息"利好股市；"衰退式降息"短期利空</td></tr>
+        <tr><td>美债（价格）</td><td style="color:#2e7d32;">上涨</td><td>利率下降 → 已有高票息债券更值钱</td></tr>
+        <tr><td>美元指数</td><td style="color:#c62828;">下跌</td><td>利差收窄 → 资金流出美元</td></tr>
+        <tr><td>黄金</td><td style="color:#2e7d32;">上涨</td><td>持有成本下降 + 美元走弱 + 避险需求</td></tr>
+        <tr><td>新兴市场/港股</td><td style="color:#2e7d32;">上涨</td><td>资金回流 + 本币升值 + 风险偏好提升</td></tr>
+    </table>
+    <div class="hl">
+        <p><strong>关键区分——两种降息完全不同：</strong></p>
+        <p><strong>预防式降息</strong>（如1995、2019、2024年）：经济尚可但有放缓迹象，降息后标普500平均一年涨+15%~20%。这是最好的交易机会。</p>
+        <p><strong>衰退式降息</strong>（如2001、2007、2020年）：经济已经陷入衰退，降息初期股市通常继续下跌，直到衰退触底才反弹。此时应先避险再抄底。</p>
+    </div>
+
+    <!-- 1.3 QE/QT -->
+    <h3>1.3 量化宽松（QE）与量化紧缩（QT）</h3>
+    <table>
+        <tr><th>政策</th><th>含义</th><th>对市场影响</th><th>历史案例</th></tr>
+        <tr>
+            <td><strong>QE（印钞）</strong></td>
+            <td>美联储购买国债/MBS，向市场注入流动性</td>
+            <td style="color:#2e7d32;">利好一切风险资产，推高股市、债市、房市</td>
+            <td>2020年3月无限QE → 标普500从低点反弹100%+</td>
+        </tr>
+        <tr>
+            <td><strong>QT（缩表）</strong></td>
+            <td>美联储减持资产，从市场抽走流动性</td>
+            <td style="color:#c62828;">压制风险资产，但影响渐进</td>
+            <td>2022年QT叠加加息 → 美股熊市，纳指跌33%</td>
+        </tr>
+    </table>
+    <div class="hl">
+        <p><strong>关键规律：</strong>QE/QT的影响比利率调整更加"温水煮青蛙"。大摩研究显示，2022年QT对美股的冲击甚至超过加息本身，因为它直接抽走市场流动性。当QT结束时（如2025年底），往往是流动性拐点，利好风险资产。</p>
+    </div>
+
+    <!-- 1.4 Forward Guidance -->
+    <h3>1.4 前瞻指引 / 点阵图（Dot Plot）</h3>
+    <div class="hl">
+        <p><strong>核心概念：</strong>"市场不交易现实，交易预期。" 美联储每季度发布一次"点阵图"，显示委员对未来利率的预测。当实际路径偏离点阵图暗示的方向时，市场就会产生剧烈波动。</p>
+        <p style="margin-top: 12px;"><strong>交易规则：</strong>关注"预期差"而非绝对水平。如果市场已定价降息3次，结果美联储暗示只降2次 → 即使降息也会引发抛售。</p>
+    </div>
+</div>
+
+<!-- ==================== 2. ECONOMIC DATA ==================== -->
+<div class="section">
+    <h2>2. 关键经济数据</h2>
+    <p>美国每月公布数十项经济数据，但真正能引发市场剧烈波动的只有少数几个。以下按市场影响力从高到低排列：</p>
+
+    <!-- 2.1 非农 -->
+    <h3>2.1 非农就业数据（NFP）</h3>
+    <div class="hl">
+        <p><strong>公布时间：</strong>每月第一个周五，北京时间20:30（冬令时21:30）</p>
+        <p><strong>市场影响力：</strong>★★★★★（最高级别）</p>
+        <p><strong>核心指标：</strong>新增非农就业人数、失业率、平均时薪</p>
+    </div>
+    <table>
+        <tr><th>情景</th><th>数据表现</th><th>市场反应</th><th>逻辑</th></tr>
+        <tr>
+            <td>大幅超预期（强劲）</td>
+            <td>新增就业远超预期</td>
+            <td style="color:#c62828;">美股短期下跌</td>
+            <td>经济过热 → 美联储不敢降息 → 利率预期上修</td>
+        </tr>
+        <tr>
+            <td>小幅超预期（温和）</td>
+            <td>略超预期</td>
+            <td style="color:#2e7d32;">美股上涨</td>
+            <td>"金发女孩"经济：不太热也不太冷 → 最佳状态</td>
+        </tr>
+        <tr>
+            <td>不及预期（疲软）</td>
+            <td>远低于预期</td>
+            <td style="color:#ff6f00;">看情况</td>
+            <td>若市场期待降息 → 利好（"坏消息是好消息"）；若担忧衰退 → 利空</td>
+        </tr>
+        <tr>
+            <td>断崖式下跌</td>
+            <td>如2024年8月仅增14.2万</td>
+            <td style="color:#c62828;">股市大跌 + VIX飙升</td>
+            <td>衰退恐慌 → 无差别抛售风险资产</td>
+        </tr>
+    </table>
+    <div class="hl">
+        <p><strong>"坏消息是好消息"逻辑：</strong>在加息周期末期，非农疲软意味着美联储更有理由降息，市场反而上涨。但在衰退担忧加剧时，坏消息就是坏消息。判断关键在于：当前市场更关心"通胀"还是"衰退"。</p>
+    </div>
+
+    <!-- 2.2 CPI -->
+    <h3>2.2 消费者物价指数（CPI）</h3>
+    <div class="hl">
+        <p><strong>公布时间：</strong>每月中旬，北京时间20:30</p>
+        <p><strong>市场影响力：</strong>★★★★★（与非农并列最高）</p>
+        <p><strong>核心指标：</strong>CPI同比/环比、核心CPI（剔除食品和能源）</p>
+    </div>
+    <table>
+        <tr><th>情景</th><th>数据表现</th><th>市场反应</th><th>逻辑</th></tr>
+        <tr>
+            <td>CPI超预期（通胀高）</td>
+            <td>核心CPI环比 > +0.3%</td>
+            <td style="color:#c62828;">美股下跌，美债下跌</td>
+            <td>通胀顽固 → 降息推迟 → 紧缩预期升温</td>
+        </tr>
+        <tr>
+            <td>CPI符合预期</td>
+            <td>与预期一致</td>
+            <td style="color:#ff6f00;">影响有限</td>
+            <td>已被定价，无预期差</td>
+        </tr>
+        <tr>
+            <td>CPI低于预期（通胀降温）</td>
+            <td>核心CPI环比 < +0.2%</td>
+            <td style="color:#2e7d32;">美股大涨，美债上涨</td>
+            <td>通胀受控 → 降息预期升温 → 流动性宽松预期</td>
+        </tr>
+    </table>
+    <div class="hl">
+        <p><strong>交易规则：</strong>CPI数据发布的前一天夜间到当天开盘，是全月波动最大的时段之一。核心CPI（Core CPI）比整体CPI更重要，因为美联储主要关注核心通胀。市场对CPI数据非常敏感——环比仅差0.1%就可能引发截然不同的反应。</p>
+    </div>
+
+    <!-- 2.3 PPI -->
+    <h3>2.3 生产者物价指数（PPI）</h3>
+    <div class="hl">
+        <p><strong>公布时间：</strong>通常在CPI前后几天</p>
+        <p><strong>市场影响力：</strong>★★★☆☆</p>
+    </div>
+    <p>PPI反映企业端的成本压力，是CPI的<strong>先行指标</strong>。PPI上涨 → 企业成本上升 → 未来可能传导至CPI → 通胀预期升温。PPI对市场的直接冲击不如CPI，但可作为判断通胀趋势的"风向标"。PPI超预期往往为随后的CPI交易提供参考。</p>
+
+    <!-- 2.4 PMI -->
+    <h3>2.4 采购经理人指数（PMI）</h3>
+    <div class="hl">
+        <p><strong>公布时间：</strong>每月第一个工作日（制造业），第三个工作日（服务业）</p>
+        <p><strong>市场影响力：</strong>★★★★☆</p>
+        <p><strong>关键分水岭：50</strong>（>50 扩张；<50 收缩）</p>
+    </div>
+    <table>
+        <tr><th>情景</th><th>PMI水平</th><th>市场含义</th></tr>
+        <tr><td>强劲扩张</td><td>> 55</td><td>经济过热信号，可能加速加息 → 短期利空成长股，利好周期股</td></tr>
+        <tr><td>温和扩张</td><td>50-55</td><td>"金发女孩"区间 → 最利好股市</td></tr>
+        <tr><td>收缩</td><td>< 50</td><td>经济放缓信号 → 利空周期股，利好防御股和债券</td></tr>
+        <tr><td>深度收缩</td><td>< 45</td><td>衰退预警 → 全面Risk-off</td></tr>
+    </table>
+    <div class="hl">
+        <p><strong>进阶认知：</strong>PMI中的"新订单-库存"差值被认为是经济周期的领先指标。当PMI景气度持续下滑时，股市表现普遍不佳；但PMI从低位反弹的拐点，往往是股市触底的信号。</p>
+    </div>
+
+    <!-- 2.5 其他 -->
+    <h3>2.5 其他重要数据速查</h3>
+    <table>
+        <tr><th>数据名称</th><th>影响力</th><th>核心逻辑</th><th>超预期 → 市场反应</th></tr>
+        <tr><td>初请失业金人数</td><td>★★★☆☆</td><td>每周发布，反映就业市场实时状态</td><td>初请人数下降 → 就业强劲 → 美联储偏鹰</td></tr>
+        <tr><td>零售销售</td><td>★★★☆☆</td><td>反映消费者支出意愿</td><td>超预期 → 经济韧性 → 美元走强</td></tr>
+        <tr><td>GDP（季度）</td><td>★★★★☆</td><td>经济增长总量指标</td><td>超预期 → 短期利好，但关注结构</td></tr>
+        <tr><td>密歇根消费者信心</td><td>★★☆☆☆</td><td>消费者情绪前瞻</td><td>通胀预期分项更受美联储关注</td></tr>
+        <tr><td>耐用品订单</td><td>★★☆☆☆</td><td>企业投资意愿</td><td>超预期 → 制造业回暖信号</td></tr>
+        <tr><td>PCE物价指数</td><td>★★★★☆</td><td>美联储最关注的通胀指标</td><td>超预期 → 对降息预期影响最大</td></tr>
+    </table>
+</div>
+
+<!-- ==================== 3. MARKET SENTIMENT ==================== -->
+<div class="section">
+    <h2>3. 市场情绪与技术指标</h2>
+
+    <!-- 3.1 VIX -->
+    <h3>3.1 VIX恐慌指数</h3>
+    <div class="hl">
+        <p><strong>本质：</strong>标普500期权的30天隐含波动率，反映市场对未来一个月波动的预期。</p>
+    </div>
+    <table>
+        <tr><th>VIX水平</th><th>市场状态</th><th>投资含义</th></tr>
+        <tr><td>< 15</td><td>极度平静</td><td>市场自满，可能积蓄波动能量，需警惕突发冲击</td></tr>
+        <tr><td>15 - 20</td><td>正常</td><td>健康状态，适合趋势交易</td></tr>
+        <tr><td>20 - 30</td><td>恐慌升温</td><td>市场开始避险，波动加大，期权变贵</td></tr>
+        <tr><td>> 30</td><td>高度恐慌</td><td>历史上VIX > 30时反而接近短期底部（反向指标）</td></tr>
+        <tr><td>> 40</td><td>极端恐慌</td><td>危机级别，如2020年3月VIX触及82，随后标普强劲反弹</td></tr>
+    </table>
+    <div class="hl">
+        <p><strong>交易常识：</strong>VIX是经典的"反向指标"——当所有人都恐慌时，反而是最好的买入时机。但不能简单地"VIX高就买"，需要结合基本面判断是"情绪过度"还是"基本面恶化"。</p>
+    </div>
+
+    <!-- 3.2 Treasury Yield -->
+    <h3>3.2 美债收益率</h3>
+    <table>
+        <tr><th>指标</th><th>当前关注点</th><th>对股市影响</th></tr>
+        <tr>
+            <td><strong>10年期美债收益率</strong></td>
+            <td>全球资产定价之锚</td>
+            <td>上涨 → 压制高估值成长股；下降 → 利好科技股和成长股</td>
+        </tr>
+        <tr>
+            <td><strong>2年期美债收益率</strong></td>
+            <td>最敏感于美联储政策</td>
+            <td>反映市场对短期利率路径的预期</td>
+        </tr>
+        <tr>
+            <td><strong>10Y-2Y利差（收益率曲线）</strong></td>
+            <td>衰退预警的"黄金指标"</td>
+            <td>倒挂（<0）→ 历史上每次衰退前都出现过倒挂，但领先时间不确定（6-24个月）</td>
+        </tr>
+    </table>
+    <div class="hl red">
+        <p><strong>收益率曲线倒挂 = 衰退预警：</strong>自1955年以来，美国每次经济衰退前都出现过收益率曲线倒挂，准确率100%。但关键在于：倒挂后衰退平均在12-18个月后才发生，且股市在倒挂初期往往还能上涨一段时间。真正的卖出信号是曲线从倒挂"转正"的时刻——通常意味着衰退已经开始。</p>
+    </div>
+
+    <!-- 3.3 DXY -->
+    <h3>3.3 美元指数（DXY）</h3>
+    <table>
+        <tr><th>DXY走势</th><th>对美股</th><th>对新兴市场</th><th>对大宗商品</th><th>对港股/中概</th></tr>
+        <tr>
+            <td style="color:#2e7d32;">上涨</td>
+            <td>跨国企业利润承压（海外收入折算减少）</td>
+            <td style="color:#c62828;">利空（资金外流+本币贬值）</td>
+            <td style="color:#c62828;">利空（以美元计价，购买力下降）</td>
+            <td style="color:#c62828;">利空（人民币贬值+资金流出）</td>
+        </tr>
+        <tr>
+            <td style="color:#c62828;">下跌</td>
+            <td>利好跨国企业 + 利好风险偏好</td>
+            <td style="color:#2e7d32;">利好（资金回流+本币升值）</td>
+            <td style="color:#2e7d32;">利好</td>
+            <td style="color:#2e7d32;">利好（人民币升值+资金流入）</td>
+        </tr>
+    </table>
+    <div class="hl">
+        <p><strong>核心规律：</strong>美元走弱几乎利好一切非美资产。瑞银研究显示，过去十年美元贬值期间新兴市场表现显著优于发达市场。对于港股/中概投资者，DXY走势是必须跟踪的核心变量。</p>
+    </div>
+</div>
+
+<!-- ==================== 4. GEO-POLITICS ==================== -->
+<div class="section">
+    <h2>4. 地缘政治与突发事件</h2>
+
+    <h3>4.1 战争与军事冲突</h3>
+    <div class="hl red">
+        <p><strong>历史铁律（100年数据验证）：</strong>战争很少改变股市的长期趋势，但几乎每次都制造短期恐慌。资产价格通常在冲突爆发后30个交易日内完成"冲击-消化-恢复"的过程。</p>
+    </div>
+    <table>
+        <tr><th>资产</th><th>冲突爆发时</th><th>30天后</th><th>6个月后</th></tr>
+        <tr><td>黄金</td><td style="color:#2e7d32;">立即跳涨5-15%</td><td>通常回吐涨幅</td><td>取决于通胀走向</td></tr>
+        <tr><td>原油</td><td style="color:#2e7d32;">飙升（尤其中东冲突）</td><td>若供应未实际中断 → 回落</td><td>取决于实际供应影响</td></tr>
+        <tr><td>美股</td><td style="color:#c62828;">下跌3-10%</td><td>多数情况已收复失地</td><td>通常创新高</td></tr>
+        <tr><td>美元</td><td style="color:#2e7d32;">避险上涨</td><td>逐步回归基本面</td><td>取决于经济数据</td></tr>
+    </table>
+    <div class="hl">
+        <p><strong>2026年伊朗战争实例：</strong>2月28日美以袭击伊朗，当日虚拟币市场44分钟蒸发700亿美元，油价飙升至$100+/桶。但30个交易日后，标普500已基本收复跌幅——验证了"地缘冲击短期化"的历史规律。最典型的操作：恐慌中买入优质股票，是历史验证过的高胜率策略。</p>
+    </div>
+
+    <h3>4.2 贸易战/关税</h3>
+    <table>
+        <tr><th>事件类型</th><th>直接影响</th><th>间接影响</th><th>受益板块</th><th>受损板块</th></tr>
+        <tr>
+            <td>加征关税</td>
+            <td>进口成本上升 → 通胀压力</td>
+            <td>供应链重构 → 不确定性上升</td>
+            <td>本土制造、国产替代</td>
+            <td>进口依赖型企业、跨国科技</td>
+        </tr>
+        <tr>
+            <td>关税缓和/谈判</td>
+            <td>成本压力缓解</td>
+            <td>风险偏好回升</td>
+            <td>跨国贸易、科技股</td>
+            <td>此前受益的替代板块</td>
+        </tr>
+    </table>
+</div>
+
+<!-- ==================== 5. CALENDAR EVENTS ==================== -->
+<div class="section">
+    <h2>5. 市场日历事件</h2>
+
+    <h3>5.1 FOMC会议（每年8次）</h3>
+    <div class="hl">
+        <p><strong>时间：</strong>约每6周一次，决议公布北京时间次日凌晨2:00，鲍威尔记者会2:30</p>
+        <p><strong>影响力：</strong>★★★★★</p>
+    </div>
+    <p>FOMC当天的"黑话"翻译极为关键。市场解读每一个措辞的变化：</p>
+    <table>
+        <tr><th>措辞变化</th><th>含义</th><th>市场反应</th></tr>
+        <tr><td>"进一步加息可能是合适的"</td><td>鹰派，还要加</td><td style="color:#c62828;">利空</td></tr>
+        <tr><td>"将根据数据判断未来路径"</td><td>中性，不预设立场</td><td>影响有限</td></tr>
+        <tr><td>"风险已趋于平衡"</td><td>鸽派信号，暗示加息接近尾声</td><td style="color:#2e7d32;">利好</td></tr>
+        <tr><td>"准备在适当时候降息"</td><td>明确鸽派转向</td><td style="color:#2e7d32;">大幅利好</td></tr>
+    </table>
+
+    <h3>5.2 四巫日（每季度一次）</h3>
+    <div class="hl">
+        <p><strong>时间：</strong>每年3月、6月、9月、12月的第三个周五</p>
+        <p><strong>含义：</strong>股指期货、股指期权、个股期权、个股期货同日到期</p>
+    </div>
+    <p>四巫日的特点是成交量暴增（可达日常2-3倍），波动率放大。近期案例：2025年12月四巫日超过<strong>7.1万亿美元</strong>名义价值的期权到期，创下历史纪录。四巫日不改变中期趋势，但短线价格可能出现大幅拉锯和"假突破"。建议当天减少杠杆操作。</p>
+
+    <h3>5.3 财报季</h3>
+    <div class="hl">
+        <p><strong>时间：</strong>每年1月中旬、4月中旬、7月中旬、10月中旬开始，持续约5周</p>
+    </div>
+    <table>
+        <tr><th>阶段</th><th>特点</th><th>操作建议</th></tr>
+        <tr><td>财报季前1周</td><td>预期博弈，波动率上升</td><td>轻仓试探，避免重仓赌方向</td></tr>
+        <tr><td>银行股财报（季初）</td><td>为整个财报季定调</td><td>银行股强 → 周期复苏信号</td></tr>
+        <tr><td>科技巨头财报（季中）</td><td>影响力最大，决定大盘方向</td><td>MAG7决定指数级别走势</td></tr>
+        <tr><td>指引/展望（Forward Guidance）</td><td>比当季业绩更重要</td><td>"Beat and Raise"才是真利好</td></tr>
+    </table>
+
+    <h3>5.4 年度关键日历速查</h3>
+    <div class="qr-grid">
+        <div class="qr-item"><div class="emoji">1</div><div class="name">1月效应</div><div class="desc">小盘股在1月通常跑赢大盘（税收抛售后的回补）</div></div>
+        <div class="qr-item"><div class="emoji">5</div><div class="name">Sell in May</div><div class="desc">"五月卖出"效应，5-10月历史平均回报低于11-4月</div></div>
+        <div class="qr-item"><div class="emoji">8</div><div class="name">杰克逊霍尔</div><div class="desc">8月底美联储年会，鲍威尔讲话常释放重大政策信号</div></div>
+        <div class="qr-item"><div class="emoji">12</div><div class="name">圣诞老人行情</div><div class="desc">12月最后5个交易日+1月前2天，标普历史平均涨1.3%</div></div>
+    </div>
+</div>
+
+<!-- ==================== 6. CROSS-MARKET ==================== -->
+<div class="section">
+    <h2>6. 跨市场联动关系</h2>
+
+    <h3>6.1 核心联动链条</h3>
+    <table>
+        <tr><th>信号</th><th>传导路径</th><th>对港股/中概影响</th></tr>
+        <tr><td>美债收益率上升</td><td>美元走强 → 人民币贬值 → 资金流出新兴市场</td><td style="color:#c62828;">利空</td></tr>
+        <tr><td>油价暴涨</td><td>通胀上升 → 降息推迟 → 航空/物流成本增加</td><td style="color:#c62828;">利空（航空受损，能源受益）</td></tr>
+        <tr><td>油价暴跌</td><td>通缩风险 or 需求疲弱 → 但利好航空物流</td><td style="color:#ff6f00;">分化</td></tr>
+        <tr><td>A50期货上涨</td><td>人民币资产信心 → 港股/中概跟随</td><td style="color:#2e7d32;">利好</td></tr>
+        <tr><td>VIX飙升(>30)</td><td>风险偏好崩溃 → 全球无差别抛售</td><td style="color:#c62828;">短期利空（但可能是买点）</td></tr>
+        <tr><td>离岸人民币（CNH）走强</td><td>外资信心 → 南向/北向资金活跃</td><td style="color:#2e7d32;">利好港股</td></tr>
+    </table>
+
+    <h3>6.2 资产轮动钟（简化版）</h3>
+    <table>
+        <tr><th>经济周期</th><th>特征</th><th>最优资产</th><th>最差资产</th></tr>
+        <tr><td>复苏期</td><td>GDP增速回升，通胀低</td><td style="color:#2e7d32;">股票（尤其周期股）</td><td>大宗商品</td></tr>
+        <tr><td>过热期</td><td>GDP高增长，通胀上升</td><td style="color:#2e7d32;">大宗商品</td><td>债券</td></tr>
+        <tr><td>滞胀期</td><td>GDP放缓，通胀高</td><td style="color:#2e7d32;">现金/短债</td><td>股票</td></tr>
+        <tr><td>衰退期</td><td>GDP下滑，通胀回落</td><td style="color:#2e7d32;">债券</td><td>大宗商品</td></tr>
+    </table>
+</div>
+
+<!-- ==================== 7. QUICK CHEAT SHEET ==================== -->
+<div class="section">
+    <h2>7. 速查表：数据发布 → 我该怎么做？</h2>
+    <table>
+        <tr><th>事件</th><th>数据利好</th><th>数据利空</th><th>交易提示</th></tr>
+        <tr>
+            <td><strong>非农就业</strong></td>
+            <td>温和增长 → 做多股票</td>
+            <td>断崖下跌 → 避险+等降息</td>
+            <td>数据前30分钟不要加仓</td>
+        </tr>
+        <tr>
+            <td><strong>CPI/PCE</strong></td>
+            <td>低于预期 → 做多科技成长</td>
+            <td>高于预期 → 减仓成长，加防御</td>
+            <td>核心通胀比整体更重要</td>
+        </tr>
+        <tr>
+            <td><strong>FOMC决议</strong></td>
+            <td>鸽派 → 做多风险资产</td>
+            <td>鹰派 → 降低仓位</td>
+            <td>关注声明措辞变化+点阵图</td>
+        </tr>
+        <tr>
+            <td><strong>PMI</strong></td>
+            <td>> 50 → 做多周期股</td>
+            <td>< 50 → 转向防御</td>
+            <td>新订单分项最有前瞻性</td>
+        </tr>
+        <tr>
+            <td><strong>地缘冲突</strong></td>
+            <td>恐慌中买优质股</td>
+            <td>首日不抄底，等2-3天</td>
+            <td>30天后通常恢复，避免追空</td>
+        </tr>
+        <tr>
+            <td><strong>财报（单股）</strong></td>
+            <td>Beat & Raise → 追涨</td>
+            <td>Miss & Lower → 止损</td>
+            <td>Forward Guidance比EPS更重要</td>
+        </tr>
+        <tr>
+            <td><strong>四巫日</strong></td>
+            <td colspan="2">当天波动放大，不改变趋势</td>
+            <td>减少杠杆，不追涨杀跌</td>
+        </tr>
+    </table>
+</div>
+
+<!-- ==================== 8. GOLDEN RULES ==================== -->
+<div class="section">
+    <h2>8. 交易者黄金法则</h2>
+    <div class="card-grid">
+        <div class="card info">
+            <h4>法则一：交易预期差，而非数据本身</h4>
+            <p>市场价格反映的是预期。即使数据"好"，如果不如预期那么好，也会下跌。真正的交易机会来自"预期差"——实际值与共识预期之间的偏离。</p>
+        </div>
+        <div class="card info">
+            <h4>法则二："坏消息是好消息"有使用条件</h4>
+            <p>只在加息周期末期成立。当市场的核心矛盾是"通胀"时，坏数据意味着降息可能 → 利好。当核心矛盾转为"衰退"时，坏消息就是坏消息。</p>
+        </div>
+        <div class="card info">
+            <h4>法则三：不在数据公布前5分钟下重注</h4>
+            <p>CPI、非农等重大数据发布瞬间，价格可能在几秒内波动1-2%，止损单可能被"穿针"触发。等数据出来后10-15分钟再行动。</p>
+        </div>
+        <div class="card info">
+            <h4>法则四：恐慌是最好的朋友</h4>
+            <p>VIX > 30时买入标普500，历史上一年后盈利概率超过85%。但需要对基本面有判断——"情绪过度"和"基本面恶化"的应对策略完全不同。</p>
+        </div>
+        <div class="card info">
+            <h4>法则五：关注美联储，但更关注市场定价</h4>
+            <p>用CME FedWatch工具跟踪市场对降息/加息的定价概率。当实际决策与定价大幅偏离时，才是最大的交易机会。</p>
+        </div>
+        <div class="card info">
+            <h4>法则六：地缘事件做反向，经济数据做顺向</h4>
+            <p>地缘冲突引发的恐慌多为短期（30天内恢复），适合逆向买入。经济数据确认的趋势（如衰退信号）则应顺势操作。</p>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== DISCLAIMER ==================== -->
+<div class="disclaimer">
+    <strong>⚠️ 免责声明：</strong>本手册基于公开信息和历史数据整理，旨在帮助投资者建立宏观分析框架，不构成任何投资建议。历史规律不保证未来重演，市场存在不确定性，投资者应根据自身情况独立判断。本手册内容截至2026年3月，请关注最新政策和数据变化。
+</div>
+
+<div class="footer">
+    <p>宏观政策与股市影响速查手册 v1.0</p>
+    <p>生成时间：2026年3月19日</p>
+    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">👁 本文阅读量: <span id="busuanzi_value_page_pv">--</span> · 总访问量: <span id="busuanzi_value_site_pv">--</span></p>
+</div>
+</div>
+
+<!-- 不蒜子访问统计 -->
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>
