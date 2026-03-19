@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿里巴巴（BABA/9988）财报分析 - 2026年3月19日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+        
+        .header .stock-box {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stock-item {
+            text-align: center;
+        }
+        
+        .stock-item .label {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+        
+        .stock-item .value {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        
+        .stock-item .change {
+            font-size: 1em;
+            margin-top: 5px;
+        }
+        
+        .negative { color: #ffeb3b; }
+        
+        .section {
+            background: rgba(255,255,255,0.97);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .section h2 {
+            font-size: 1.6em;
+            color: #333;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #ff6a00;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section h3 {
+            font-size: 1.3em;
+            color: #333;
+            margin: 25px 0 15px 0;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ff6a0020 0%, #ee097920 100%);
+            border-left: 5px solid #ff6a00;
+            padding: 25px;
+            border-radius: 0 15px 15px 0;
+            margin: 20px 0;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .data-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border-top: 4px solid #ff6a00;
+        }
+        
+        .data-card .label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .data-card .value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .data-card .change {
+            font-size: 0.95em;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        .positive { color: #00c853; }
+        .negative { color: #ff1744; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .factor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .factor-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid;
+        }
+        
+        .factor-card.bullish { border-left-color: #00c853; }
+        .factor-card.bearish { border-left-color: #ff1744; }
+        .factor-card.neutral { border-left-color: #ffc107; }
+        
+        .factor-card h4 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .factor-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .factor-card li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+        }
+        
+        .factor-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ff6a00;
+        }
+        
+        .price-timeline {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+        
+        .price-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+        
+        .price-item:last-child {
+            border-bottom: none;
+        }
+        
+        .price-time {
+            width: 150px;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .price-value {
+            flex: 1;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .price-change {
+            width: 120px;
+            text-align: right;
+            font-weight: bold;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+        }
+        
+        .disclaimer {
+            background: rgba(255,193,7,0.15);
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            color: #856404;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .header .stock-box {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>阿里巴巴财报分析</h1>
+            <p class="subtitle">2026财年Q3业绩发布 | 2026年3月19日</p>
+            <div class="stock-box">
+                <div class="stock-item">
+                    <div class="label">美股代码</div>
+                    <div class="value">BABA</div>
+                </div>
+                <div class="stock-item">
+                    <div class="label">港股代码</div>
+                    <div class="value">9988.HK</div>
+                </div>
+                <div class="stock-item">
+                    <div class="label">盘后跌幅</div>
+                    <div class="value" style="color: #ffeb3b;">-4.78%</div>
+                </div>
+                <div class="stock-item">
+                    <div class="label">盘前跌幅</div>
+                    <div class="value" style="color: #ffeb3b;">-5%+</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="section">
+            <h2>📋 执行摘要</h2>
+            <div class="highlight-box">
+                <p><strong>核心结论：</strong>阿里巴巴2026财年Q3财报（自然年2025年Q4）<strong>不及市场预期</strong>，导致美股盘后大跌逾4%。营收2,848.4亿元人民币，同比增长仅2%，<strong>低于分析师预期的2,907亿元</strong>；净利润同比<strong>暴跌66.65%</strong>。尽管云业务增长36%表现亮眼，但电商核心业务收入增速骤降至1%，且AI大规模投入严重拖累利润。</p>
+            </div>
+            
+            <div class="data-grid">
+                <div class="data-card">
+                    <div class="label">Q3营收</div>
+                    <div class="value">2,848亿</div>
+                    <div class="change" style="color: #ffc107;">+2% YoY</div>
+                </div>
+                <div class="data-card">
+                    <div class="label">vs 预期</div>
+                    <div class="value" style="color: #ff1744;">MISS</div>
+                    <div class="change">预期2,907亿</div>
+                </div>
+                <div class="data-card">
+                    <div class="label">净利润</div>
+                    <div class="value" style="color: #ff1744;">-66.7%</div>
+                    <div class="change">同比暴跌</div>
+                </div>
+                <div class="data-card">
+                    <div class="label">云业务</div>
+                    <div class="value" style="color: #00c853;">+36%</div>
+                    <div class="change">增速加速</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Details -->
+        <div class="section">
+            <h2>💰 财务数据详情</h2>
+            
+            <h3>核心财务指标</h3>
+            <table>
+                <tr>
+                    <th>指标</th>
+                    <th>实际值</th>
+                    <th>预期值</th>
+                    <th>同比变化</th>
+                    <th>评价</th>
+                </tr>
+                <tr>
+                    <td>营业收入</td>
+                    <td>2,848.4亿元</td>
+                    <td>2,907亿元</td>
+                    <td style="color: #ffc107;">+2%</td>
+                    <td style="color: #ff1744;">MISS</td>
+                </tr>
+                <tr>
+                    <td>净利润</td>
+                    <td>大幅下降</td>
+                    <td>-</td>
+                    <td style="color: #ff1744;">-66.7%</td>
+                    <td style="color: #ff1744;">大幅不及预期</td>
+                </tr>
+                <tr>
+                    <td>Non-GAAP EPS</td>
+                    <td>$7.09</td>
+                    <td>$10.94</td>
+                    <td style="color: #ff1744;">-35.2%</td>
+                    <td style="color: #ff1744;">MISS 35%</td>
+                </tr>
+                <tr>
+                    <td>经营利润率</td>
+                    <td>2.2%</td>
+                    <td>-</td>
+                    <td style="color: #ff1744;">大幅下滑</td>
+                    <td style="color: #ff1744;">盈利承压</td>
+                </tr>
+            </table>
+
+            <h3>各业务板块表现</h3>
+            <table>
+                <tr>
+                    <th>业务板块</th>
+                    <th>收入</th>
+                    <th>同比增速</th>
+                    <th>点评</th>
+                </tr>
+                <tr>
+                    <td>云智能集团</td>
+                    <td>约429亿元</td>
+                    <td style="color: #00c853;">+36%</td>
+                    <td>唯一亮点，AI需求驱动</td>
+                </tr>
+                <tr>
+                    <td>淘天集团（电商）</td>
+                    <td>约1,400亿元</td>
+                    <td style="color: #ffc107;">+1%</td>
+                    <td>CMR增速骤降至1%，核心引擎失速</td>
+                </tr>
+                <tr>
+                    <td>国际数字商业</td>
+                    <td>392亿元</td>
+                    <td style="color: #ffc107;">稳健增长</td>
+                    <td>经调整EBITA为-20亿，仍处投入期</td>
+                </tr>
+                <tr>
+                    <td>本地生活</td>
+                    <td>-</td>
+                    <td style="color: #ff1744;">亏损</td>
+                    <td>即时零售补贴拖累利润</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Stock Price Reaction -->
+        <div class="section">
+            <h2>📉 股价走势反应</h2>
+            
+            <h3>财报发布前后股价变化</h3>
+            <div class="price-timeline">
+                <div class="price-item">
+                    <span class="price-time">3月18日收盘</span>
+                    <span class="price-value">$134.43</span>
+                    <span class="price-change" style="color: #666;">基准</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-time">3月19日盘前</span>
+                    <span class="price-value" style="color: #ff1744;">~$127.50</span>
+                    <span class="price-change" style="color: #ff1744;">-5.1%</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-time">3月19日盘后</span>
+                    <span class="price-value" style="color: #ff1744;">~$128.00</span>
+                    <span class="price-change" style="color: #ff1744;">-4.78%</span>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>市场反应解读：</strong>阿里财报发布后，美股盘前一度大跌逾5%，盘后收跌4.78%。这一反应反映了市场对以下问题的担忧：</p>
+                <ol style="margin-left: 20px; margin-top: 15px; line-height: 2;">
+                    <li><strong>营收MISS</strong>：2,848亿 vs 2,907亿预期，差距近60亿元</li>
+                    <li><strong>利润暴跌</strong>：净利润同比-66.7%，AI投入严重拖累盈利</li>
+                    <li><strong>电商失速</strong>：淘天CMR增速仅1%，核心业务增长乏力</li>
+                    <li><strong>投入产出失衡</strong>：大规模AI投入尚未转化为可见回报</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Bull vs Bear -->
+        <div class="section">
+            <h2>⚖️ 多空因素分析</h2>
+            
+            <div class="factor-grid">
+                <div class="factor-card bullish">
+                    <h4>🟢 利好因素</h4>
+                    <ul>
+                        <li><strong>云业务高速增长</strong>：阿里云+36%增速，AI需求强劲</li>
+                        <li><strong>AI投入决心</strong>：未来5年云+AI收入目标1,000亿美元</li>
+                        <li><strong>通义千问生态</strong>：开源模型Qwen系列获得广泛采用</li>
+                        <li><strong>Token事业群</strong>：组织架构调整聚焦AI战略</li>
+                        <li><strong>长期布局</strong>：AI基础设施投资为未来增长奠基</li>
+                    </ul>
+                </div>
+                
+                <div class="factor-card bearish">
+                    <h4>🔴 利空因素</h4>
+                    <ul>
+                        <li><strong>营收不及预期</strong>：MISS近60亿元，增长仅2%</li>
+                        <li><strong>利润大幅下滑</strong>：净利润-66.7%，盈利能力恶化</li>
+                        <li><strong>电商核心业务失速</strong>：淘天CMR增速骤降至1%</li>
+                        <li><strong>投入产出失衡</strong>：AI投入巨大但回报不明显</li>
+                        <li><strong>竞争加剧</strong>：拼多多、抖音电商持续侵蚀份额</li>
+                        <li><strong>即时零售亏损</strong>：淘宝闪购补贴拖累利润</li>
+                    </ul>
+                </div>
+                
+                <div class="factor-card neutral">
+                    <h4>🟡 中性/观察因素</h4>
+                    <ul>
+                        <li><strong>国际业务</strong>：增长稳健但仍处投入期，亏损20亿</li>
+                        <li><strong>监管环境</strong>：国内监管边际改善，但不确定性仍存</li>
+                        <li><strong>宏观消费</strong>：国内消费复苏缓慢影响电商业务</li>
+                        <li><strong>AI商业化</strong>：长期前景光明但短期难以量化</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Issues -->
+        <div class="section">
+            <h2>🔍 核心问题剖析</h2>
+            
+            <h3>1. 电商核心业务为何失速？</h3>
+            <div class="highlight-box">
+                <p>淘天集团CMR（客户管理收入）增速骤降至<strong>1%</strong>，这是阿里最核心的利润引擎。原因包括：</p>
+                <ul style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                    <li>拼多多低价策略持续抢占市场份额</li>
+                    <li>抖音电商内容带货分流用户时长</li>
+                    <li>京东物流优势稳固3C品类</li>
+                    <li>国内消费复苏缓慢，整体电商增速放缓</li>
+                    <li>阿里主动降低货币化率以扶持商家</li>
+                </ul>
+            </div>
+            
+            <h3>2. AI投入为何严重拖累利润？</h3>
+            <table>
+                <tr>
+                    <th>投入方向</th>
+                    <th>具体表现</th>
+                    <th>对利润影响</th>
+                </tr>
+                <tr>
+                    <td>云基础设施</td>
+                    <td>大规模采购GPU、建设数据中心</td>
+                    <td>资本开支激增</td>
+                </tr>
+                <tr>
+                    <td>大模型研发</td>
+                    <td>通义千问系列模型训练</td>
+                    <td>研发费用高企</td>
+                </tr>
+                <tr>
+                    <td>人才引进</td>
+                    <td>AI人才竞争激烈，薪酬成本上升</td>
+                    <td>人力成本增加</td>
+                </tr>
+                <tr>
+                    <td>即时零售</td>
+                    <td>淘宝闪购大规模补贴</td>
+                    <td>亏损扩大</td>
+                </tr>
+            </table>
+            
+            <h3>3. 云业务高增长能否持续？</h3>
+            <div class="highlight-box">
+                <p>阿里云36%增速是财报唯一亮点，但市场关注：</p>
+                <ul style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                    <li><strong>增长质量</strong>：多少来自AI需求？多少来自传统云迁移？</li>
+                    <li><strong>盈利能力</strong>：云业务经调整EBITA利润率能否提升？</li>
+                    <li><strong>竞争格局</strong>：华为云、腾讯云、百度文心一言的竞争</li>
+                    <li><strong>客户结构</strong>：大模型公司订单是否可持续？</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Management Guidance -->
+        <div class="section">
+            <h2>🎯 管理层展望</h2>
+            
+            <div class="highlight-box">
+                <p><strong>CEO吴泳铭在财报电话会上的关键表态：</strong></p>
+                <ul style="margin-left: 20px; margin-top: 15px; line-height: 2;">
+                    <li>"未来五年，包含MaaS在内的云和AI商业化年收入突破<strong>1,000亿美元</strong>"</li>
+                    <li>预计2029财年即时零售业务板块将实现整体盈利</li>
+                    <li>AI投资是长期战略，短期利润承压但长期价值巨大</li>
+                    <li>通义千问开源生态将获得更广泛采用</li>
+                </ul>
+            </div>
+            
+            <h3>市场解读</h3>
+            <table>
+                <tr>
+                    <th>管理层表态</th>
+                    <th>市场反应</th>
+                    <th>解读</th>
+                </tr>
+                <tr>
+                    <td>5年1,000亿美元AI收入目标</td>
+                    <td>褒贬不一</td>
+                    <td>雄心勃勃但缺乏具体路径，市场质疑可行性</td>
+                </tr>
+                <tr>
+                    <td>即时零售2029年盈利</td>
+                    <td>失望</td>
+                    <td>意味着还需4年持续亏损，拖累整体利润</td>
+                </tr>
+                <tr>
+                    <td>AI投资长期价值</td>
+                    <td>观望</td>
+                    <td>市场认可长期逻辑，但担忧短期执行</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Analyst Views -->
+        <div class="section">
+            <h2>📊 分析师观点</h2>
+            
+            <table>
+                <tr>
+                    <th>机构</th>
+                    <th>评级</th>
+                    <th>目标价</th>
+                    <th>核心观点</th>
+                </tr>
+                <tr>
+                    <td>综合共识</td>
+                    <td>强烈买入</td>
+                    <td>$218</td>
+                    <td>62.5%上涨空间，长期AI价值被低估</td>
+                </tr>
+                <tr>
+                    <td>看空派</td>
+                    <td>中性/减持</td>
+                    <td>$120-140</td>
+                    <td>电商失速、利润下滑，估值偏高</td>
+                </tr>
+                <tr>
+                    <td>看多派</td>
+                    <td>买入</td>
+                    <td>$250+</td>
+                    <td>AI基础设施龙头，长期增长确定</td>
+                </tr>
+            </table>
+            
+            <div class="highlight-box">
+                <p><strong>关键分歧：</strong>分析师对阿里的分歧在于<strong>时间维度</strong>——短期看，电商失速、利润下滑是现实压力；长期看，AI基础设施、云业务增长是价值支撑。当前股价反映的是短期担忧，长期价值是否被低估存在争议。</p>
+            </div>
+        </div>
+
+        <!-- Investment Strategy -->
+        <div class="section">
+            <h2>💡 投资策略建议</h2>
+            
+            <h3>不同投资者类型建议</h3>
+            <table>
+                <tr>
+                    <th>投资者类型</th>
+                    <th>建议操作</th>
+                    <th>关键点位</th>
+                    <th>时间 horizon</th>
+                </tr>
+                <tr>
+                    <td>短线交易者</td>
+                    <td>观望或轻仓做空</td>
+                    <td>支撑$120，阻力$140</td>
+                    <td>1-4周</td>
+                </tr>
+                <tr>
+                    <td>中线投资者</td>
+                    <td>逢低分批建仓</td>
+                    <td>建仓区$120-130</td>
+                    <td>3-6个月</td>
+                </tr>
+                <tr>
+                    <td>长期价值投资者</td>
+                    <td>持有或加仓</td>
+                    <td>目标$200-250</td>
+                    <td>1-3年</td>
+                </tr>
+            </table>
+            
+            <h3>关键观察指标</h3>
+            <div class="data-grid">
+                <div class="data-card">
+                    <div class="label">云业务增速</div>
+                    <div class="value" style="color: #00c853;">36%</div>
+                    <div class="change">能否维持30%+</div>
+                </div>
+                <div class="data-card">
+                    <div class="label">淘天CMR增速</div>
+                    <div class="value" style="color: #ff1744;">1%</div>
+                    <div class="change">能否回升至5%+</div>
+                </div>
+                <div class="data-card">
+                    <div class="label">AI收入占比</div>
+                    <div class="value">?</div>
+                    <div class="change">何时披露具体数据</div>
+                </div>
+                <div class="data-card">
+                    <div class="label">利润率</div>
+                    <div class="value" style="color: #ff1744;">2.2%</div>
+                    <div class="change">何时企稳回升</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="section">
+            <h2>📝 总结</h2>
+            
+            <div class="highlight-box">
+                <p><strong>核心结论：</strong>阿里巴巴本次财报呈现<strong>"双面阿里"</strong>——云业务高歌猛进（+36%），但电商核心业务失速（CMR +1%），AI大规模投入严重拖累利润（-66.7%）。</p>
+                <p style="margin-top: 15px;">市场用脚投票，盘后大跌4.78%，反映投资者对以下问题的担忧：</p>
+                <ol style="margin-left: 20px; margin-top: 10px; line-height: 2;">
+                    <li>电商核心业务增长乏力，竞争劣势扩大</li>
+                    <li>AI投入巨大但短期回报不明显</li>
+                    <li>盈利能力大幅下滑，利润率压缩至2.2%</li>
+                    <li>营收MISS显示整体增长动能不足</li>
+                </ol>
+            </div>
+            
+            <div class="highlight-box" style="background: linear-gradient(135deg, #00c85320 0%, #00e67620 100%); border-left-color: #00c853;">
+                <p><strong>长期视角：</strong>尽管短期业绩承压，阿里在AI基础设施领域的布局具有战略价值。CEO吴泳铭提出的"5年1,000亿美元AI收入"目标虽然激进，但如果实现，将彻底改变阿里的估值逻辑。投资者需要在<strong>短期痛苦</strong>与<strong>长期价值</strong>之间做出权衡。</p>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <strong>⚠️ 风险提示：</strong>以上分析基于公开信息整理，仅供参考，不构成投资建议。阿里巴巴股价波动较大，当前面临电商竞争加剧、AI投入回报不确定、监管环境变化等多重风险。投资者应充分了解风险，根据自身风险承受能力做出独立判断。过往表现不代表未来收益。
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>报告生成时间：2026年3月19日</p>
+            <p>数据来源：阿里巴巴财报、Yahoo Finance、公开市场信息</p>
+            <p style="margin-top: 10px;">投资有风险，入市需谨慎</p>
+        </div>
+    </div>
+</body>
+</html>

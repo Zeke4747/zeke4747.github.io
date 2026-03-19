@@ -1,6 +1,11 @@
 // 文章列表配置
 const articles = [
     {
+        title: "阿里巴巴财报深度分析 2026",
+        file: "articles/Alibaba_Earnings_Analysis_20260319.html",
+        date: "2026-03-19"
+    },
+    {
         title: "Circle CRCL 伊朗战争风险分析",
         file: "articles/Circle_CRCL_Iran_War_Analysis.html",
         date: "2026-03-19"
