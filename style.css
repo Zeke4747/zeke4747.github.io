@@ -88,6 +88,35 @@ footer {
     font-size: 0.9em;
 }
 
+.site-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.site-stats span {
+    font-weight: 500;
+}
+
+.stats-loading {
+    text-align: center;
+    padding: 10px;
+    color: #7f8c8d;
+    font-size: 0.9em;
+}
+
+.article-views {
+    display: inline-block;
+    margin-left: 10px;
+    color: #e74c3c;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
 /* 文章页面样式 */
 .article-content {
     line-height: 1.8;
