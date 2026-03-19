@@ -102,6 +102,12 @@ footer {
     font-weight: 500;
 }
 
+/* 文章阅读数样式 */
+.busuanzi-value {
+    color: #e74c3c;
+    font-weight: 500;
+}
+
 /* 文章页面样式 */
 .article-content {
     line-height: 1.8;
