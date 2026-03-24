@@ -47,37 +47,10 @@ function loadArticles() {
     listElement.innerHTML = sortedArticles.map(article => `
         <li>
             <a href="${article.file}">${article.title}</a>
-            <span class="date">${article.date} · 👁 <span class="busuanzi-value" data-path="/${article.file}">--</span> 次阅读</span>
+            <span class="date">${article.date}</span>
         </li>
     `).join('');
 }
 
-// 获取单页面访问量（通过不蒜子 API）
-async function loadPageViews() {
-    // 等待不蒜子脚本加载完成
-    if (typeof bszCaller === 'undefined') {
-        setTimeout(loadPageViews, 500);
-        return;
-    }
-    
-    // 获取所有文章链接的访问量
-    const spans = document.querySelectorAll('.busuanzi-value');
-    for (const span of spans) {
-        const path = span.getAttribute('data-path');
-        try {
-            // 使用不蒜子的方式获取特定页面访问量
-            // 注意：不蒜子本身不支持直接查询其他页面，这里使用一个变通方法
-            // 在实际页面中，不蒜子会自动统计当前页面的访问量
-            // 对于首页显示各文章访问量，需要额外的处理
-            span.textContent = '加载中';
-        } catch (error) {
-            span.textContent = '--';
-        }
-    }
-}
-
 // 页面加载完成后执行
-document.addEventListener('DOMContentLoaded', () => {
-    loadArticles();
-    loadPageViews();
-});
+document.addEventListener('DOMContentLoaded', loadArticles);
