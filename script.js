@@ -1,6 +1,11 @@
 // 文章列表配置
 const articles = [
     {
+        title: "美股连跌四周深度分析报告",
+        file: "articles/US_Stock_Decline_Analysis_20260324.html",
+        date: "2026-03-24"
+    },
+    {
         title: "宏观政策与股市 - 投资者常识手册",
         file: "articles/Macro_Policy_Stock_Market_CheatSheet.html",
         date: "2026-03-19"

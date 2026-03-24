@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美股连跌四周深度分析报告 | 2026年3月24日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #0a0e1a;
+            color: #e0e6f0;
+            line-height: 1.7;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a0000 0%, #3d0000 30%, #0a0e1a 70%);
+            padding: 60px 40px 40px;
+            text-align: center;
+            border-bottom: 2px solid #ff2d2d33;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff2d2d' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        .header h1 {
+            font-size: 2.4em;
+            background: linear-gradient(90deg, #ff4444, #ff8888, #ff4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .header .subtitle {
+            color: #999;
+            font-size: 1.1em;
+            position: relative;
+        }
+        .header .date-badge {
+            display: inline-block;
+            background: rgba(255,45,45,0.15);
+            border: 1px solid rgba(255,45,45,0.3);
+            color: #ff6b6b;
+            padding: 6px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            position: relative;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+
+        /* Executive Summary */
+        .exec-summary {
+            background: linear-gradient(135deg, rgba(255,45,45,0.08), rgba(255,100,100,0.03));
+            border: 1px solid rgba(255,45,45,0.2);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .exec-summary h2 {
+            color: #ff6b6b;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .exec-summary p { color: #c0c8d8; font-size: 1.05em; }
+
+        /* Index Cards */
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .index-card {
+            background: rgba(20,25,40,0.8);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .index-card:hover { transform: translateY(-3px); }
+        .index-card .name { color: #8899aa; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; }
+        .index-card .value { font-size: 1.8em; font-weight: 700; color: #e0e6f0; margin: 8px 0; }
+        .index-card .change { font-size: 1.1em; font-weight: 600; }
+        .index-card .change.negative { color: #ff4444; }
+        .index-card .change.positive { color: #00c853; }
+        .index-card .period { color: #667; font-size: 0.8em; margin-top: 4px; }
+
+        /* Metric Row */
+        .metric-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+        .metric-box {
+            background: rgba(20,25,40,0.8);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+        }
+        .metric-box .label { color: #8899aa; font-size: 0.8em; margin-bottom: 6px; }
+        .metric-box .val { font-size: 1.4em; font-weight: 700; }
+        .metric-box .val.red { color: #ff4444; }
+        .metric-box .val.orange { color: #ff9800; }
+        .metric-box .val.green { color: #00c853; }
+
+        /* Section */
+        .section {
+            background: rgba(15,20,35,0.6);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 24px;
+        }
+        .section h2 {
+            font-size: 1.3em;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h3 {
+            font-size: 1.1em;
+            color: #88aacc;
+            margin: 20px 0 10px;
+        }
+        .section p { color: #b0b8c8; margin-bottom: 12px; }
+
+        /* Timeline */
+        .timeline { position: relative; padding-left: 30px; margin: 20px 0; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #ff4444, #ff9800, #ffeb3b);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 22px;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            border-left: 3px solid #ff4444;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 22px;
+            width: 12px;
+            height: 12px;
+            background: #ff4444;
+            border-radius: 50%;
+            border: 2px solid #0a0e1a;
+        }
+        .timeline-item .date { color: #ff8888; font-size: 0.85em; font-weight: 600; margin-bottom: 4px; }
+        .timeline-item .event { color: #c0c8d8; font-size: 0.95em; }
+        .timeline-item.positive { border-left-color: #00c853; }
+        .timeline-item.positive::before { background: #00c853; }
+        .timeline-item.warning { border-left-color: #ff9800; }
+        .timeline-item.warning::before { background: #ff9800; }
+
+        /* Factor Cards */
+        .factor-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .factor-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 22px;
+        }
+        .factor-card .factor-title {
+            font-size: 1.05em;
+            font-weight: 600;
+            color: #e0e6f0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .factor-card .factor-impact {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+        .impact-high { background: rgba(255,45,45,0.2); color: #ff6b6b; }
+        .impact-medium { background: rgba(255,152,0,0.2); color: #ffb74d; }
+        .factor-card p { color: #99a8b8; font-size: 0.92em; }
+
+        /* Sector Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        th {
+            background: rgba(255,255,255,0.05);
+            color: #8899aa;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: #b0b8c8;
+            font-size: 0.93em;
+        }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+        .red { color: #ff4444; }
+        .green { color: #00c853; }
+        .orange { color: #ff9800; }
+
+        /* Chain diagram */
+        .chain {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            margin: 24px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+        }
+        .chain-node {
+            background: rgba(255,68,68,0.1);
+            border: 1px solid rgba(255,68,68,0.25);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            color: #ffaaaa;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .chain-arrow {
+            color: #555;
+            font-size: 1.2em;
+            padding: 0 6px;
+        }
+
+        /* Outlook */
+        .outlook-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .outlook-card {
+            border-radius: 12px;
+            padding: 22px;
+            text-align: center;
+        }
+        .outlook-card.bull {
+            background: rgba(0,200,83,0.08);
+            border: 1px solid rgba(0,200,83,0.2);
+        }
+        .outlook-card.bear {
+            background: rgba(255,45,45,0.08);
+            border: 1px solid rgba(255,45,45,0.2);
+        }
+        .outlook-card.neutral {
+            background: rgba(255,152,0,0.08);
+            border: 1px solid rgba(255,152,0,0.2);
+        }
+        .outlook-card .scenario { font-size: 1.05em; font-weight: 600; margin-bottom: 8px; }
+        .outlook-card .prob { font-size: 1.6em; font-weight: 700; margin: 8px 0; }
+        .outlook-card p { font-size: 0.85em; color: #99a8b8; }
+
+        /* Key Insight */
+        .insight-box {
+            background: linear-gradient(135deg, rgba(255,152,0,0.08), rgba(255,200,0,0.03));
+            border: 1px solid rgba(255,152,0,0.2);
+            border-radius: 14px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        .insight-box .tag {
+            display: inline-block;
+            background: rgba(255,152,0,0.2);
+            color: #ffb74d;
+            font-size: 0.75em;
+            font-weight: 600;
+            padding: 3px 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #445;
+            font-size: 0.8em;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .index-grid, .factor-grid, .outlook-grid { grid-template-columns: 1fr; }
+            .metric-row { grid-template-columns: repeat(2, 1fr); }
+            .chain { flex-direction: column; }
+            .chain-arrow { transform: rotate(90deg); }
+            .header h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>美股连跌四周深度分析</h1>
+    <div class="subtitle">伊朗战争 + 美联储鹰派 + 滞胀恐慌 = 多重利空共振</div>
+    <div class="date-badge">报告日期：2026年3月24日 | 数据截至3月24日收盘</div>
+</div>
+
+<div class="container">
+
+    <!-- Executive Summary -->
+    <div class="exec-summary">
+        <h2>&#x1F4CB; 核心摘要</h2>
+        <p>
+            自2月28日美以联合对伊朗发动军事打击以来，美股三大指数已连续四周下跌。截至3月20日收盘，道指本周累跌2.11%、纳指跌2.07%、标普500跌1.91%，道指与纳指均逼近从高点回撤10%的"回调区间"。市场遭遇罕见的<strong style="color:#ff6b6b">"股债金三杀"</strong>——黄金单周暴跌11.26%创43年最大跌幅。本轮下跌的核心逻辑是：<strong style="color:#ff9800">地缘战争推升油价 → 通胀预期恶化 → 美联储鹰派转向 → 降息预期大幅回撤 → 估值重估与滞胀恐慌</strong>。3月24日，特朗普宣布美伊已开始对话，油价盘中暴跌超10%，美股三大指数当日反弹超1%，但中期不确定性仍高。
+        </p>
+    </div>
+
+    <!-- Index Performance -->
+    <div class="index-grid">
+        <div class="index-card">
+            <div class="name">道琼斯工业指数</div>
+            <div class="value">~40,700</div>
+            <div class="change negative">-2.11%</div>
+            <div class="period">3月16-20日当周</div>
+            <div class="change negative" style="font-size:0.85em; margin-top:6px">连跌四周 | 逼近回调区间</div>
+        </div>
+        <div class="index-card">
+            <div class="name">纳斯达克综合指数</div>
+            <div class="value">~17,250</div>
+            <div class="change negative">-2.07%</div>
+            <div class="period">3月16-20日当周</div>
+            <div class="change negative" style="font-size:0.85em; margin-top:6px">科技股领跌 | 逼近回调区间</div>
+        </div>
+        <div class="index-card">
+            <div class="name">标普500指数</div>
+            <div class="value">~5,580</div>
+            <div class="change negative">-1.91%</div>
+            <div class="period">3月16-20日当周</div>
+            <div class="change negative" style="font-size:0.85em; margin-top:6px">连跌四周 | SPY 10日-3.3%</div>
+        </div>
+    </div>
+
+    <!-- Key Metrics -->
+    <div class="metric-row">
+        <div class="metric-box">
+            <div class="label">VIX 恐慌指数</div>
+            <div class="val orange">27.4</div>
+            <div class="label" style="margin-top:4px">高位运行（中性偏恐慌）</div>
+        </div>
+        <div class="metric-box">
+            <div class="label">WTI 原油（峰值）</div>
+            <div class="val red">$118+</div>
+            <div class="label" style="margin-top:4px">战争推动突破</div>
+        </div>
+        <div class="metric-box">
+            <div class="label">10Y 美债收益率</div>
+            <div class="val red">4.39%</div>
+            <div class="label" style="margin-top:4px">通胀预期推升</div>
+        </div>
+        <div class="metric-box">
+            <div class="label">恐惧与贪婪指数</div>
+            <div class="val red">~15</div>
+            <div class="label" style="margin-top:4px">极度恐慌区间</div>
+        </div>
+    </div>
+
+    <!-- Timeline Section -->
+    <div class="section">
+        <h2>&#x1F4C5; 关键事件时间线</h2>
+        <p style="margin-bottom:16px">从2月下旬至今，密集利空事件不断叠加，形成了罕见的"多重利空共振"局面。</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="date">2月22日</div>
+                <div class="event"><strong>特朗普签署行政令，将全球进口关税从10%提高至15%</strong>，贸易战担忧加剧。市场开始对企业利润压缩定价。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">2月28日 14:00</div>
+                <div class="event"><strong>美以联合对伊朗发动军事打击</strong>，中东局势骤然升级，全球资本市场恐慌。WTI原油当日跳涨超9%，美股期货暴跌。</div>
+            </div>
+            <div class="timeline-item warning">
+                <div class="date">3月初-3月中旬</div>
+                <div class="event"><strong>战局持续升级，无停火迹象</strong>。油价持续走高，WTI一度突破118美元/桶，霍尔木兹海峡航运威胁加剧。汽油均价升至$3.96/加仑，较冲突前上涨30%+。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">3月17日</div>
+                <div class="event">标普500仅不到32%的成分股位于50日均线上方，市场广度极差。技术面发出"熊市信号"。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">3月18日（周三）</div>
+                <div class="event"><strong>美联储3月议息会议：维持利率3.50%-3.75%不变</strong>，连续第二次暂停降息。关键变化：将2026年PCE通胀预期从2.4%大幅上调至2.7%，点阵图仅预计全年降息1次。鲍威尔直言"通胀不降，降息免谈"，甚至讨论了加息可能性。市场宽松预期遭遇"大幅回撤"。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">3月20日（周五）</div>
+                <div class="event"><strong>美股收盘三大指数全线下跌</strong>。道指跌0.96%、纳指跌2.01%、标普跌1.51%。本周分别累跌2.11%、2.07%、1.91%，连续第四周下跌。出现罕见"股债金三杀"，黄金本周暴跌11.26%，创43年最大单周跌幅。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="date">3月21日</div>
+                <div class="event">全球债券市场3月蒸发超2.5万亿美元，势将创三年多来最大单月跌幅。伊朗战争引发的"滞胀"叙事成为市场主导逻辑。</div>
+            </div>
+            <div class="timeline-item positive">
+                <div class="date">3月23日（周日）</div>
+                <div class="event"><strong>特朗普在社交媒体宣布：美国与伊朗已进行对话，可能5天内达成协议</strong>。宣布暂停对伊朗发电厂和能源基础设施的打击。国际油价应声暴跌超10%，WTI跌至~$85/桶，布伦特跌至~$96。但伊朗方面否认存在谈判。</div>
+            </div>
+            <div class="timeline-item positive">
+                <div class="date">3月24日（周一）</div>
+                <div class="event"><strong>美股大幅反弹</strong>。三大指数均涨超1%，美股期货早盘一度跳水但迅速V型反转。"谈判罗生门"引发市场剧烈震荡，超21亿美元"神秘资金"提前入场。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Five Core Factors -->
+    <div class="section">
+        <h2>&#x1F50D; 五大下跌核心因素</h2>
+        <p style="margin-bottom:16px">本轮下跌并非单一因素驱动，而是五重利空在同一时间窗口共振的结果。</p>
+
+        <div class="factor-grid">
+            <!-- Factor 1 -->
+            <div class="factor-card">
+                <div class="factor-title">
+                    <span>&#x1F525;</span>
+                    因素一：伊朗战争与地缘风险
+                    <span class="factor-impact impact-high">影响极高</span>
+                </div>
+                <p>2月28日美以对伊军事打击是本轮下跌的最大催化剂。战事持续近一个月无停火迹象，霍尔木兹海峡航运面临威胁，原油价格飙升至118美元以上。油价暴涨直接推升企业成本和消费者物价，形成"成本推动型通胀"。</p>
+                <p style="color:#ff8888; margin-top:8px"><strong>传导路径：</strong>战争 → 油价飙升 → 运输成本+原材料成本 → 企业利润承压 → 股价下跌</p>
+            </div>
+
+            <!-- Factor 2 -->
+            <div class="factor-card">
+                <div class="factor-title">
+                    <span>&#x1F3E6;</span>
+                    因素二：美联储鹰派急转弯
+                    <span class="factor-impact impact-high">影响极高</span>
+                </div>
+                <p>3月18日美联储会议成为"压死骆驼的最后一根稻草"。将2026年PCE通胀预期从2.4%大幅上调至2.7%，点阵图仅预计全年降息1次（此前市场预期2-3次）。鲍威尔明确表态"通胀不降则不降息"，并提及加息讨论，彻底粉碎了市场的宽松幻想。</p>
+                <p style="color:#ff8888; margin-top:8px"><strong>核心影响：</strong>降息预期从"年内3次"退缩至"最多1次"，10年期美债收益率升至4.39%，高估值科技股首当其冲</p>
+            </div>
+
+            <!-- Factor 3 -->
+            <div class="factor-card">
+                <div class="factor-title">
+                    <span>&#x26FD;</span>
+                    因素三：滞胀恐慌（Stagflation）
+                    <span class="factor-impact impact-high">影响极高</span>
+                </div>
+                <p>油价暴涨+经济放缓信号=典型滞胀特征。汽油价格月涨超30%，通胀预期被上修；同时消费者信心下滑、企业前瞻性指引保守。这是投资者最恐惧的宏观组合——经济衰退时央行因通胀无法降息救市。全球债市3月蒸发超2.5万亿美元。</p>
+                <p style="color:#ff8888; margin-top:8px"><strong>历史对标：</strong>上世纪70年代石油危机期间的滞胀曾导致美股长达数年的低迷</p>
+            </div>
+
+            <!-- Factor 4 -->
+            <div class="factor-card">
+                <div class="factor-title">
+                    <span>&#x1F4E6;</span>
+                    因素四：关税升级与贸易战
+                    <span class="factor-impact impact-medium">影响中高</span>
+                </div>
+                <p>2月22日特朗普将全球进口关税从10%提高至15%，叠加此前的对等关税政策。摩根大通将全球衰退概率上调至60%。关税直接推高进口商品价格，压缩企业利润率，尤其打击依赖全球供应链的科技和消费板块。</p>
+                <p style="color:#ffb74d; margin-top:8px"><strong>警示信号：</strong>零售商联合会警告关税将对供应链造成"极大破坏"</p>
+            </div>
+
+            <!-- Factor 5 -->
+            <div class="factor-card" style="grid-column: span 2;">
+                <div class="factor-title">
+                    <span>&#x1F4C9;</span>
+                    因素五：技术面恶化与资金出逃
+                    <span class="factor-impact impact-medium">影响中等</span>
+                </div>
+                <p>
+                    标普500仅不到32%的成分股位于50日均线上方，市场广度极差。SPY的RSI跌至29（严重超卖），DIA的RSI更低至24。恐惧贪婪指数跌至~15（极度恐慌）。机构投资者大规模出逃科技股，出现"无避险可寻"的罕见局面——股票、债券、黄金同时下跌，传统避险策略全面失效。道指录得自2023年2月以来最长周线连跌纪录。
+                </p>
+            </div>
+        </div>
+
+        <!-- Chain Diagram -->
+        <h3>核心传导链</h3>
+        <div class="chain">
+            <div class="chain-node">伊朗战争<br><small>2月28日爆发</small></div>
+            <div class="chain-arrow">&#x27A1;</div>
+            <div class="chain-node">油价飙升<br><small>WTI $118+</small></div>
+            <div class="chain-arrow">&#x27A1;</div>
+            <div class="chain-node">通胀恶化<br><small>PCE↑至2.7%</small></div>
+            <div class="chain-arrow">&#x27A1;</div>
+            <div class="chain-node">美联储鹰派<br><small>降息免谈</small></div>
+            <div class="chain-arrow">&#x27A1;</div>
+            <div class="chain-node">利率高企<br><small>10Y→4.39%</small></div>
+            <div class="chain-arrow">&#x27A1;</div>
+            <div class="chain-node">估值重估<br><small>科技股暴跌</small></div>
+        </div>
+        <div class="chain" style="margin-top:10px">
+            <div class="chain-node" style="border-color:rgba(255,152,0,0.3);background:rgba(255,152,0,0.1);color:#ffcc80">关税15%<br><small>2月22日</small></div>
+            <div class="chain-arrow">&#x27A1;</div>
+            <div class="chain-node" style="border-color:rgba(255,152,0,0.3);background:rgba(255,152,0,0.1);color:#ffcc80">进口成本↑<br><small>供应链承压</small></div>
+            <div class="chain-arrow">&#x27A1;</div>
+            <div class="chain-node" style="border-color:rgba(255,152,0,0.3);background:rgba(255,152,0,0.1);color:#ffcc80">企业利润↓<br><small>衰退概率60%</small></div>
+            <div class="chain-arrow">&#x27A1;</div>
+            <div class="chain-node" style="border-color:rgba(255,152,0,0.3);background:rgba(255,152,0,0.1);color:#ffcc80">滞胀叙事<br><small>最差组合</small></div>
+        </div>
+    </div>
+
+    <!-- Sector Performance -->
+    <div class="section">
+        <h2>&#x1F4CA; 板块表现分化</h2>
+        <p style="margin-bottom:12px">在"战争+滞胀"叙事主导下，板块表现出现极端分化。能源和金融逆势上涨，而科技、材料和公用事业领跌。</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>板块</th>
+                    <th>本周表现</th>
+                    <th>逻辑解读</th>
+                    <th>代表个股</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>&#x26FD; 能源</strong></td>
+                    <td class="green"><strong>上涨</strong></td>
+                    <td>油价飙升直接利好，成为"战争避风港"</td>
+                    <td>XOM, CVX, OXY</td>
+                </tr>
+                <tr>
+                    <td><strong>&#x1F3E6; 金融</strong></td>
+                    <td class="green"><strong>上涨</strong></td>
+                    <td>利率高企→利差扩大→银行盈利改善</td>
+                    <td>JPM, GS, BAC</td>
+                </tr>
+                <tr>
+                    <td><strong>&#x1F6E1; 国防/军工</strong></td>
+                    <td class="green"><strong>上涨</strong></td>
+                    <td>中东战事直接催化军费开支预期</td>
+                    <td>LMT, RTX, NOC</td>
+                </tr>
+                <tr>
+                    <td><strong>&#x1F48A; 医疗保健</strong></td>
+                    <td class="orange"><strong>持平~微跌</strong></td>
+                    <td>防御属性提供部分支撑</td>
+                    <td>JNJ, UNH, PFE</td>
+                </tr>
+                <tr>
+                    <td><strong>&#x1F4BB; 科技</strong></td>
+                    <td class="red"><strong>领跌（-2%+）</strong></td>
+                    <td>高估值+利率敏感，QQQ RSI跌至超卖</td>
+                    <td>AAPL, MSFT, NVDA, GOOGL</td>
+                </tr>
+                <tr>
+                    <td><strong>&#x1F3ED; 材料</strong></td>
+                    <td class="red"><strong>领跌</strong></td>
+                    <td>原材料成本飙升+需求预期下滑</td>
+                    <td>LIN, APD, ECL</td>
+                </tr>
+                <tr>
+                    <td><strong>&#x26A1; 公用事业</strong></td>
+                    <td class="red"><strong>领跌</strong></td>
+                    <td>利率上行替代收益吸引力，高杠杆承压</td>
+                    <td>NEE, DUK, SO</td>
+                </tr>
+                <tr>
+                    <td><strong>&#x1F6D2; 可选消费</strong></td>
+                    <td class="red"><strong>下跌</strong></td>
+                    <td>油价推高生活成本，消费者支出预期缩减</td>
+                    <td>AMZN, TSLA, HD</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Special: Triple Kill -->
+    <div class="section">
+        <h2>&#x26A0; 罕见现象："股债金三杀"</h2>
+        <p>
+            3月第三周出现了极为罕见的"股债金三杀"——股票、债券、黄金同时下跌。这在历史上极少发生，上一次出现类似情形还要追溯到2022年美联储激进加息周期。
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>资产类别</th>
+                    <th>周度变化</th>
+                    <th>原因</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>美股（标普500）</strong></td>
+                    <td class="red">-1.91%</td>
+                    <td>地缘风险+通胀+降息预期崩溃</td>
+                </tr>
+                <tr>
+                    <td><strong>美债（10Y收益率上行=价格下跌）</strong></td>
+                    <td class="red">收益率升至4.39%</td>
+                    <td>美联储上调通胀预期，"higher for longer"</td>
+                </tr>
+                <tr>
+                    <td><strong>黄金</strong></td>
+                    <td class="red"><strong>-11.26%（单周）</strong></td>
+                    <td>创43年最大单周跌幅；流动性危机下被迫抛售变现</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="insight-box">
+            <div class="tag">关键洞察</div>
+            <p style="color:#c0c8d8">
+                黄金在战争初期通常上涨（避险需求），但本轮黄金暴跌反映了<strong style="color:#ffb74d">流动性危机</strong>——当所有资产都在下跌时，投资者被迫抛售黄金以满足保证金和赎回需求。这也意味着市场恐慌已达到较高程度，但从逆向投资角度来看，"极度恐慌往往是最好的买点附近"。CNN恐惧贪婪指数已跌至~15，处于历史极端区间。
+            </p>
+        </div>
+    </div>
+
+    <!-- March 24 Turning Point -->
+    <div class="section">
+        <h2>&#x1F504; 3月24日：转折信号？</h2>
+        <p>3月23日（周日），特朗普在Truth Social上宣布美国与伊朗已经进行对话，并可能在5天内达成协议，同时宣布暂停对伊朗能源基础设施的打击。这一消息引发了全球市场剧烈反应：</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>资产</th>
+                    <th>3月24日变化</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>美股三大指数</strong></td>
+                    <td class="green"><strong>均涨超1%</strong></td>
+                    <td>期货早盘跳水后V型反转，超21亿美元资金提前入场</td>
+                </tr>
+                <tr>
+                    <td><strong>WTI原油</strong></td>
+                    <td class="green"><strong>暴跌13%+ → ~$85</strong></td>
+                    <td>从$98跌至$85，布伦特跌至$96</td>
+                </tr>
+                <tr>
+                    <td><strong>美债收益率</strong></td>
+                    <td class="green">下行</td>
+                    <td>通胀预期缓和，债券价格反弹</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="insight-box">
+            <div class="tag">不确定性警告</div>
+            <p style="color:#c0c8d8">
+                伊朗方面否认存在谈判，称特朗普的声明"不属实"。这构成了一个"谈判罗生门"，市场未来数天将在多空之间反复拉锯。<strong style="color:#ffb74d">专家认为未来5天是决定性窗口</strong>——如果谈判属实并取得进展，油价可能进一步回落至$70-80区间，美股有望迎来强势反弹；如果被证伪，油价将重新冲高，市场可能加速探底。
+            </p>
+        </div>
+    </div>
+
+    <!-- Outlook -->
+    <div class="section">
+        <h2>&#x1F52E; 后市展望与情景分析</h2>
+
+        <div class="outlook-grid">
+            <div class="outlook-card bull">
+                <div class="scenario" style="color:#00c853">乐观情景</div>
+                <div class="prob" style="color:#00c853">25%</div>
+                <p>美伊达成停火协议，油价快速回落至$70-80；通胀预期修正，美联储重回宽松轨道。美股可能从当前位置反弹8-12%，科技股领涨。</p>
+            </div>
+            <div class="outlook-card neutral">
+                <div class="scenario" style="color:#ff9800">基准情景</div>
+                <div class="prob" style="color:#ff9800">45%</div>
+                <p>美伊低烈度对峙持续，油价在$85-100区间震荡；美联储维持观望，年内降息0-1次。美股震荡筑底，标普在5400-5700区间波动。</p>
+            </div>
+            <div class="outlook-card bear">
+                <div class="scenario" style="color:#ff4444">悲观情景</div>
+                <div class="prob" style="color:#ff4444">30%</div>
+                <p>谈判破裂，战事全面升级，霍尔木兹海峡中断；油价冲破$130，滞胀确认。美股正式进入回调甚至熊市，标普可能下探5200以下。</p>
+            </div>
+        </div>
+
+        <h3>关键观察指标</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>当前水平</th>
+                    <th>乐观阈值</th>
+                    <th>危险阈值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>WTI 原油</td>
+                    <td>~$85（3/24盘中）</td>
+                    <td class="green">&lt; $80</td>
+                    <td class="red">&gt; $110</td>
+                </tr>
+                <tr>
+                    <td>VIX 恐慌指数</td>
+                    <td>27.4</td>
+                    <td class="green">&lt; 20</td>
+                    <td class="red">&gt; 35</td>
+                </tr>
+                <tr>
+                    <td>10Y 美债收益率</td>
+                    <td>4.39%</td>
+                    <td class="green">&lt; 4.1%</td>
+                    <td class="red">&gt; 4.6%</td>
+                </tr>
+                <tr>
+                    <td>恐惧贪婪指数</td>
+                    <td>~15（极度恐慌）</td>
+                    <td class="green">&gt; 30（恐慌缓和）</td>
+                    <td class="red">&lt; 10（市场崩溃）</td>
+                </tr>
+                <tr>
+                    <td>标普500 50日均线上方占比</td>
+                    <td>&lt;32%</td>
+                    <td class="green">&gt;50%</td>
+                    <td class="red">&lt;20%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Strategy -->
+    <div class="section">
+        <h2>&#x1F3AF; 操作策略建议</h2>
+
+        <div class="factor-grid">
+            <div class="factor-card">
+                <div class="factor-title">&#x1F6E1; 防御为主，控制仓位</div>
+                <p>当前市场处于"多重不确定性叠加"阶段，建议总仓位控制在50-60%以下。保留充足现金应对可能的进一步下跌或把握反弹机会。</p>
+            </div>
+            <div class="factor-card">
+                <div class="factor-title">&#x26FD; 能源+军工保留配置</div>
+                <p>只要中东局势未明朗化，能源和军工板块仍是"乱世赢家"。XOM、CVX、LMT等标的短期维持超配。若美伊确认停火则果断减仓。</p>
+            </div>
+            <div class="factor-card">
+                <div class="factor-title">&#x1F4BB; 科技股分批布局</div>
+                <p>RSI处于严重超卖区间（SPY 29、DIA 24），恐惧指数~15为历史极端。若美伊出现实质性和谈进展，科技股反弹弹性最大。可分3-5批在标普5400-5600区间布局。</p>
+            </div>
+            <div class="factor-card">
+                <div class="factor-title">&#x1F4B0; 关注逆向信号</div>
+                <p>历史数据显示，恐惧贪婪指数跌破15后，未来30天标普500平均反弹7-10%。但需等待确认信号：油价回落+VIX下穿25+美伊和谈实质进展。不要"接飞刀"。</p>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <div class="tag">核心结论</div>
+            <p style="color:#c0c8d8; font-size:1.05em">
+                本轮美股连跌四周是<strong style="color:#ff8888">地缘战争（伊朗）</strong>、<strong style="color:#ff8888">美联储鹰派转向</strong>、<strong style="color:#ff8888">关税升级</strong>三重利空共振的结果，核心矛盾是<strong style="color:#ffb74d">"滞胀恐慌"</strong>——油价推高通胀，令央行无法降息纾困。3月24日美伊对话消息带来曙光，但不确定性极高。未来一周是关键窗口，建议"防御为主、保留弹药、等待确认信号再加仓"。
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>免责声明：本报告仅供信息参考，不构成任何投资建议。投资有风险，决策需谨慎。</p>
+        <p style="margin-top:8px">QoderWork 生成 | 数据来源：Yahoo Finance, Reuters, CNBC, 新浪财经, 东方财富</p>
+        <p style="margin-top: 15px; font-size: 0.9em; color: #888;">👁 本文阅读量: <span id="busuanzi_value_page_pv">--</span> · 总访问量: <span id="busuanzi_value_site_pv">--</span></p>
+    </div>
+</div>
+
+<!-- 不蒜子访问统计 -->
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>
